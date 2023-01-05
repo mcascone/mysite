@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mysite
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: mysite
+  labels:
+    app: mysite
+  name: mysite
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysite
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: mysite
+    spec:
+      containers:
+      - image: mcascone/mysite:latest
+        name: mysite
+        ports:
+        - containerPort: 80
+        resources: {}
+
+---
+# On minikube, use `minikube tunnel` to enable external traffic to the LB
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysite-service
+  namespace: mysite
+spec:
+  type: LoadBalancer
+  selector:
+    app: mysite
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
