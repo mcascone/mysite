@@ -1,6 +1,7 @@
 # mysite
 
-A very simple website container for proof-of-life testing.
+A very simple static website container for proof-of-life testing.
+
 It'll get more sophisticated over time.
 
 
@@ -9,12 +10,14 @@ It'll get more sophisticated over time.
 This is a very simple image build. The `Dockerfile` defines the image.
 
 ```
-docker build -t mcascone/mysite .
+docker build -t mcascone/mysite --platform linux/amd64 .
 ```
 
-***NOTE: You don't have to build this image to use it!*** It is already hosted on `docker.io`, and running the examples below will pull the image if it doesn't exist on your machine.
+***NOTE: You don't have to build this image to use it!*** It is already hosted on `docker.io`, and running the examples below will automatically pull the image if it doesn't exist on your machine.
 
 If you want to play with the contents of the image, feel free to modify anything in this repo. Just change your build command to something other than `mcascone/mysite`, or at the very least, *please don't push to `mcascone/mysite`*.
+
+> Note 2: the `--platform` switch in the build command above is only required if you are building on an M1 Mac and intend to run the image on anything *other than* an M1 Mac. So it's best to just always leave it on by adding `export DOCKER_DEFAULT_PLATFORM=linux/amd64` to your shell profile.
 
 # Usage
 
@@ -139,7 +142,16 @@ mysite1	mysite   	1       	2023-01-06 16:05:16.922625 -0600 CST	deployed	mysite-
 ```
 
 ## Deploy to EC2 with a GitHub Action
-WIP
+
+By adding the `.github/workflows` directory, we can add GitHub Actions to automate various tasks in our repo.
+
+We'll use the [Bitovi](bitovi.com) [`Deploy Docker to AWS (EC2)` action](https://github.com/marketplace/actions/deploy-docker-to-aws-ec2) to create deploy the site to an AWS EC2 instance with one click.
+
+Inspect the `.github/workflows/deployToEC2.yaml` file. Its presence in the repo enables the Action in the GitHub UI.
+You must set environment variables with your AWS access credentials as described here: https://github.com/marketplace/actions/deploy-docker-to-aws-ec2 
+
+Then in the GitHub UI, push a change to the repo, or run the action.
+
 
 ## Deploy to EKS with a GitHub Action
 WIP
