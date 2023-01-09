@@ -1,4 +1,5 @@
 # mysite
+[![Basic deploy](https://github.com/mcascone/mysite/actions/workflows/deployToEC2.yaml/badge.svg?branch=main)](https://github.com/mcascone/mysite/actions/workflows/deployToEC2.yaml)
 
 A very simple static website container for proof-of-life testing.
 
@@ -145,7 +146,7 @@ mysite1	mysite   	1       	2023-01-06 16:05:16.922625 -0600 CST	deployed	mysite-
 
 By adding the `.github/workflows` directory, we can add GitHub Actions to automate various tasks in our repo.
 
-We'll use the [Bitovi](bitovi.com) [`Deploy Docker to AWS (EC2)` action](https://github.com/marketplace/actions/deploy-docker-to-aws-ec2) to create deploy the site to an AWS EC2 instance with one click.
+We'll use the [Bitovi](bitovi.com) [`Deploy Docker to AWS (EC2)` action](https://github.com/marketplace/actions/deploy-docker-to-aws-ec2) to deploy the site to an AWS EC2 instance with one click.
 
 Inspect the `.github/workflows/deployToEC2.yaml` file. Its presence in the repo enables the Action in the GitHub UI.
 
