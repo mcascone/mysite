@@ -17,4 +17,5 @@ jobs:
           
           stack_destroy: ""
           tf_state_bucket: "maxc-bucket-tf"
-          tf_state_bucket_destroy: "" 
+          tf_state_bucket_destroy: ""
+          lb_port: "8085"
