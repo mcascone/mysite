@@ -102,7 +102,7 @@ Copy that URL and tack `:8080` on the end, and you should see your site!
 ### Note on local `minikube` clusters
 `minikube` is a great way to test kubernetes stuff on your local machine. Install it with `homebrew install minikube`, start it with `minikube start`. 
 
-To enable the Load Balancer services to work without any Port Forwarding or Ingress shenanigans, you have to enable the `tunnel` feature: `minikube tunnel`. All Load Balancers should then be accessible at `localhost`. 
+To enable the Load Balancer services to work without any Port Forwarding or Ingress shenanigans, you only have to run: `minikube tunnel`. All Load Balancers should then be accessible at `localhost`. 
 > Note that this means there's only one URL to use. If you want to expose multiple services at `localhost`, you'll have to specify unique ports for each one.
 
 ## Deploy to kubernetes: helm
@@ -152,7 +152,12 @@ Inspect the `.github/workflows/deployToEC2.yaml` file. Its presence in the repo 
 
 - You must set environment variables with your AWS access credentials as described here: https://github.com/marketplace/actions/deploy-docker-to-aws-ec2 
 
-Then in the GitHub UI, push a change to the repo, or run the action.
+Then in the GitHub UI, push a change to the repo, or run the action. 
+
+On success, you should see the public URL of the site:
+
+> ## VM Created! :rocket:
+>  http://tf-lb-20230109212353287200000002-1134741516.us-east-1.elb.amazonaws.com:8085
 
 
 ## Deploy to EKS with a GitHub Action
