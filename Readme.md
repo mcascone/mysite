@@ -3,16 +3,40 @@
 A very simple website container for proof-of-life testing.
 It'll get more sophisticated over time.
 
-## Usage
 
-There are a few ways to deploy this site.
+# Build
 
-### Run the container locally
+This is a very simple image build. The `Dockerfile` defines the image.
+
+```
+docker build -t mcascone/mysite .
+```
+
+***NOTE: You don't have to build this image to use it!*** It is already hosted on `docker.io`, and running the examples below will pull the image if it doesn't exist on your machine.
+
+If you want to play with the contents of the image, feel free to modify anything in this repo. Just change your build command to something other than `mcascone/mysite`, or at the very least, *please don't push to `mcascone/mysite`*.
+
+# Usage
+
+There are any number of ways to deploy this site. That's really the beauty of containers, isn't it?
+
+I'll try to scaffold the techniques by approximate level of complexity.
+
+## Run the container locally with `docker compose`
+This really couldn't be easier. In a terminal, run: `docker compose up`
+
+This builds and launches the container on `localhost:8085`. View it in a browser or `curl localhost:8085`
+
+Why `8085`? I wanted to set it to a different port than in the next example, just to avoid collisions. Look in the [docker-compose](docker-compose.yml) file for the port definition: `8085:80`.
+
+To knock the instance down, run `docker compose down`.
+
+## Run the container locally using `docker run`
 ```
 docker run --rm -d -p 8084:80 --name mysite mcascone/mysite
 ```
 
-This will launch the container and expose it to port `8084` on your local machine. To see it, go to http://localhost:8084/
+This will launch the container and expose it to port `8084` on your local machine. To see it, go to http://localhost:8084/ or `curl localhost:8084`
 > There's nothing special about the `8084` port, it's just unlikely to be used by another process on your machine. You can change it if needed.
 
 - The `-d` param runs the container in the background, so you get your shell back after launch.
@@ -22,14 +46,14 @@ This will launch the container and expose it to port `8084` on your local machin
 
 To stop the container, run `docker stop mysite`
 
-### Deploy to kubernetes: manifest
+## Deploy to kubernetes: manifest
 
 This repo contains a kubernetes deployment manifest that will stand up all the resources necessary for the site:
 1. A new namespace `mysite` to isolate the site from other objects in the cluster
 2. A deployment of the container in a pod
 3. A Load Balancer service to expose the pod to external traffic.
 
-#### Deploying with a manifest
+### Deploying with a manifest
 Assuming you have a functional k8s instance, run the following:
 ```
 kubectl apply -f deployment.yaml
@@ -71,19 +95,19 @@ Note the `EXTERNAL-IP` there. That's your new site!
 
 Copy that URL and tack `:8080` on the end, and you should see your site!
 
-#### Note on local `minikube` clusters
-`minikube` is a great way to test kubernetes stuff on your local machine. Install it with `homebrew`, start it with `minikube start`. 
+### Note on local `minikube` clusters
+`minikube` is a great way to test kubernetes stuff on your local machine. Install it with `homebrew install minikube`, start it with `minikube start`. 
 
-To enable the Load Balancer services to work without any Port Forwarding shenanigans, you have to enable the `tunnel` feature: `minikube tunnel`. All Load Balancers should then be accessible at `localhost`. 
+To enable the Load Balancer services to work without any Port Forwarding or Ingress shenanigans, you have to enable the `tunnel` feature: `minikube tunnel`. All Load Balancers should then be accessible at `localhost`. 
 > Note that this means there's only one URL to use. If you want to expose multiple services at `localhost`, you'll have to specify unique ports for each one.
 
-### Deploy to kubernetes: helm
+## Deploy to kubernetes: helm
 
 This repo also contains a Helm chart in the `helm/` directory. 
 
 Helm charts consolidate all of the details of your deployments into a common format that is easily templated and dynamically modified. It's overkill for this example, but it's good to know how it works.
 
-#### Deploying with helm
+### Deploying with helm
 
 1. Install `helm`.
 2. Create a namespace to deploy to (optional but recommended): `kubectl create ns mysite`
@@ -114,8 +138,17 @@ NAME   	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART  
 mysite1	mysite   	1       	2023-01-06 16:05:16.922625 -0600 CST	deployed	mysite-0.1.0	0.2    
 ```
 
-### Deploy to EC2 with a GitHub Action
+## Deploy to EC2 with a GitHub Action
 WIP
 
-### Deploy to EKS with a GitHub Action
+## Deploy to EKS with a GitHub Action
+WIP
+
+## Deploy to LocalStack
+WIP
+
+## Deploy to GCP/GKS
+WIP
+
+## Deploy to Azure/AKS
 WIP
