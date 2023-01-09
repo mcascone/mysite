@@ -15,5 +15,6 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
           aws_default_region: us-east-1
           
-          stack_destroy: false
-          tf_state_bucket_destroy: false 
+          stack_destroy: ""
+          tf_state_bucket: "maxc-bucket-tf"
+          tf_state_bucket_destroy: "" 
