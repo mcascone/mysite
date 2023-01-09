@@ -16,3 +16,4 @@ jobs:
           aws_default_region: ca-central-1
           
           stack_destroy: true
+          tf_state_bucket_destroy: true 
