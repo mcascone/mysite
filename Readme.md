@@ -148,7 +148,8 @@ By adding the `.github/workflows` directory, we can add GitHub Actions to automa
 We'll use the [Bitovi](bitovi.com) [`Deploy Docker to AWS (EC2)` action](https://github.com/marketplace/actions/deploy-docker-to-aws-ec2) to create deploy the site to an AWS EC2 instance with one click.
 
 Inspect the `.github/workflows/deployToEC2.yaml` file. Its presence in the repo enables the Action in the GitHub UI.
-You must set environment variables with your AWS access credentials as described here: https://github.com/marketplace/actions/deploy-docker-to-aws-ec2 
+
+- You must set environment variables with your AWS access credentials as described here: https://github.com/marketplace/actions/deploy-docker-to-aws-ec2 
 
 Then in the GitHub UI, push a change to the repo, or run the action.
 
