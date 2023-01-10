@@ -27,7 +27,13 @@ spec:
         name: mysite
         ports:
         - containerPort: 80
-        resources: {}
+        resources:
+          requests:
+            memory: 64Mi
+            cpu: 100m
+          limits:
+            memory: 64Mi
+            cpu: 100m
 
 ---
 # On minikube, use `minikube tunnel` to enable external traffic to the LB
