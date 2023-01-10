@@ -169,16 +169,21 @@ WIP
 WIP
 
 ## Deploy to GCP/GKS
-- create a GCP account at [cloud.google.com](https://cloud.google.com/)
-- Install [google cloud cli](https://cloud.google.com/sdk/docs/install)
-- Create a cluster [using the cli](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-an-autopilot-cluster):
+1. create a GCP account at [cloud.google.com](https://cloud.google.com/)
+2. Install [google cloud cli](https://cloud.google.com/sdk/docs/install)
+2.  Create a cluster [using the cli](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-an-autopilot-cluster):
     ```
     gcloud container clusters create-auto <cluster-name> \
     --region us-central1 \
     --project=<your-project-id> 
     ```
-- Gather the kubeconfig and [configure cluster access](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl)
-- Run `kubectl apply -f deployment.yaml` (sound familiar?)
+2. Gather the kubeconfig and [configure cluster access](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl)
+3. Deploy with manifest: Run `kubectl apply -f deployment.yaml` (sound familiar?)
+4. Deploy with Helm:
+    ```
+    kubectl create namespace mysite
+    helm upgrade --install mysite helm -n mysite
+    ```
 
 ## Deploy to Azure/AKS
 WIP
