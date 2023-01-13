@@ -169,9 +169,9 @@ WIP
 WIP
 
 ## Deploy to GCP/GKS
-1. create a GCP account at [cloud.google.com](https://cloud.google.com/)
+1. Create a GCP account at [cloud.google.com](https://cloud.google.com/)
 2. Install [google cloud cli](https://cloud.google.com/sdk/docs/install)
-2.  Create a cluster [using the cli](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-an-autopilot-cluster):
+2. Create a cluster [using the cli](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-an-autopilot-cluster):
     ```
     gcloud container clusters create-auto <cluster-name> \
     --region us-central1 \
