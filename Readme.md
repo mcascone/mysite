@@ -1,5 +1,5 @@
 # mysite
-[![Basic deploy](https://github.com/mcascone/mysite/actions/workflows/deployToEC2.yaml/badge.svg?branch=main)](https://github.com/mcascone/mysite/actions/workflows/deployToEC2.yaml)
+[![docker-build-publish-and-deploy](https://github.com/mcascone/mysite/actions/workflows/docker-build-tag-publish.yaml/badge.svg?branch=main)](https://github.com/mcascone/mysite/actions/workflows/docker-build-tag-publish.yaml)
 
 A very simple static website container for proof-of-life testing.
 

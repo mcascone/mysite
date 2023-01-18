@@ -27,4 +27,4 @@ jobs:
           # stack_destroy: "true"
           tf_state_bucket: "maxc-bucket-tf"
           # tf_state_bucket_destroy: "true"
-          app_port: "80"
+          app_port: "8085"

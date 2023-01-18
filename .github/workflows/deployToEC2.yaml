@@ -2,11 +2,11 @@ name: Destroy
 on: workflow_dispatch
 
 jobs:
-  EC2-Deploy:
+  EC2-destroy:
     runs-on: ubuntu-latest
     steps:
-      - id: deploy
-        name: Deploy Docker to AWS (EC2)
+      - id: destroy
+        name: Destroy Docker to AWS (EC2)
         uses: bitovi/github-actions-deploy-docker-to-ec2@main
         with:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID}}
