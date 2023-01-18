@@ -1,7 +1,5 @@
-name: Basic deploy
-on:
-  push:
-    branches: [ main ]
+name: Destroy
+on: workflow_dispatch
 
 jobs:
   EC2-Deploy:

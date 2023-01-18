@@ -1,5 +1,30 @@
--   id: docker-publish
-    uses: bitovi/github-actions-docker-publish@main
-      with:
-        docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
-        docker_password: ${{ secrets.DOCKERHUB_PASSWORD }}
+name: docker-build-publish-and-deploy
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  Docker-Build-And-Publish:
+    runs-on: ubuntu-latest
+    steps:
+      -   id: docker-publish
+          uses: bitovi/github-actions-docker-publish@main
+          with:
+            docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
+            docker_password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+  EC2-Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - id: deploy
+        name: Deploy Docker to AWS (EC2)
+        uses: bitovi/github-actions-deploy-docker-to-ec2@main
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID}}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_default_region: us-east-1
+          
+          # stack_destroy: "true"
+          tf_state_bucket: "maxc-bucket-tf"
+          # tf_state_bucket_destroy: "true"
+          app_port: "80"
