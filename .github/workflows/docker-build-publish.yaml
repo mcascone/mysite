@@ -1,0 +1,14 @@
+name: docker-build-publish
+on: workflow_dispatch
+  # push:
+  #   branches: [ main ]
+
+jobs:
+  Docker-Build-And-Publish:
+    runs-on: ubuntu-latest
+    steps:
+      - id: docker-publish
+        uses: bitovi/github-actions-docker-publish@main
+        with:
+          docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
+          docker_password: ${{ secrets.DOCKERHUB_PASSWORD }}

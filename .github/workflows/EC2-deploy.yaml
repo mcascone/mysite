@@ -1,18 +1,9 @@
-name: docker-build-publish-and-deploy
-on:
-  push:
-    branches: [ main ]
+name: EC2-Deploy
+on: workflow_dispatch
+  # push:
+  #   branches: [ main ]
 
 jobs:
-  Docker-Build-And-Publish:
-    runs-on: ubuntu-latest
-    steps:
-      -   id: docker-publish
-          uses: bitovi/github-actions-docker-publish@main
-          with:
-            docker_username: ${{ secrets.DOCKERHUB_USERNAME }}
-            docker_password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
   EC2-Deploy:
     runs-on: ubuntu-latest
     steps:

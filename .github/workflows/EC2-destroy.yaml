@@ -1,6 +1,8 @@
-name: Destroy
+name: EC2-Destroy
 on: workflow_dispatch
-
+  # push:
+  #   branches: [ main ]
+  
 jobs:
   EC2-destroy:
     runs-on: ubuntu-latest
