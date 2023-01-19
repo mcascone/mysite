@@ -2,7 +2,7 @@ name: EC2-Destroy
 on: workflow_dispatch
   # push:
   #   branches: [ main ]
-  
+
 jobs:
   EC2-destroy:
     runs-on: ubuntu-latest
@@ -16,6 +16,6 @@ jobs:
           aws_default_region: us-east-1
           
           stack_destroy: "true"
-          tf_state_bucket: "maxc-bucket-tf"
+          # tf_state_bucket: "maxc-bucket-tf"
           tf_state_bucket_destroy: "true"
           app_port: "8085"
